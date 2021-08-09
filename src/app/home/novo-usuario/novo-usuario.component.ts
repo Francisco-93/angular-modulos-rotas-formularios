@@ -24,7 +24,7 @@ export class NovoUsuarioComponent implements OnInit {
   }
 
   cadastrar(){
-    const novoUsuario = this.novoUsuarioForm;
+    const novoUsuario = this.novoUsuarioForm.getRawValue() as NovoUsuario;
     console.log(novoUsuario);
   }
 
