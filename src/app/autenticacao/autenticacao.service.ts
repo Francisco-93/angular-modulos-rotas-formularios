@@ -1,6 +1,7 @@
+import { UsuarioService } from './usuario/usuario.service';
 import { Injectable } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,10 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class AutenticacaoService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private usuarioService: UsuarioService) { }
 
-  autenticar(usuario: string, senha: string): Observable<any>{
-    return this.http.post('http://localhost:3000/user/login', {userName: usuario, password: senha});
+  autenticar(usuario: string, senha: string): Observable<HttpResponse<any>>{
+    return this.http.post('http://localhost:3000/user/login', {userName: usuario, password: senha},
+    {observe: 'response'});
   }
 
 }
